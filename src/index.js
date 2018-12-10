@@ -22,7 +22,7 @@ class Commitment {
   constructor(v, r) {
     this.v = v
     this.r = r === undefined ? new BN(crypto.randomBytes(32)) : r
-    // BN.js doesn't seem to handle multiplying by a negative scalar, so
+    // elliptic doesn't seem to handle multiplying by a negative scalar, so
     // instead just negate the generator.
     this.rG = this.r.isNeg() ? G.neg().mul(this.r.abs()) : G.mul(this.r)
     this.vH = this.v < 0 ? H.neg().mul(Math.abs(this.v)) : H.mul(this.v)
