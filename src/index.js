@@ -36,6 +36,10 @@ class Commitment {
   sub(other) {
     return new Commitment(this.v - other.v, this.r.sub(other.r))
   }
+
+  commitment() {
+    return this.vH.add(this.rG)
+  }
 }
 
 const v1 = new Commitment(100)
@@ -48,3 +52,4 @@ console.log(`
 ${sum.rG.getX().toBuffer().toString('hex')}
 ${sum.isZero}
 `)
+console.log(`${curve.validate(sum.commitment())}`)
